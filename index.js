@@ -15,6 +15,12 @@ const db = mongoose.connect(
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// enables CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); //specific domain to give access to
+  next();
+});
+
 app.get("/", function (req, res) {
   // Handle the request for the root route
   res.send({ ping: "pong" });
